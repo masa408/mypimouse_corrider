@@ -1,0 +1,4 @@
+<launch>
+  <include file="$(find mypimouse_ros)/launch/mypimouse.launch" />
+  <node pkg="mypimouse_corridor" name="wall_trance" type="wall_trace.py" required="true" />
+</launch>
