@@ -15,7 +15,7 @@ class WallStop():
         self.sensor_values = messages
 
     def run(self):
-        rate = rospy,Rate(10)
+        rate = rospy.Rate(10)
         data = Twist()
 
         accel = 0.02
@@ -27,7 +27,7 @@ class WallStop():
             elif data.linear.x <= 0.2:            data.linear.x = 0.2
             elif data.linear.x >= 0.8:            data.linear.x = 0.8
 
-            self.cmd_value.publish(data)
+            self.cmd_vel.publish(data)
             rate.sleep()
 
 

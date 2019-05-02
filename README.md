@@ -1,2 +1,2 @@
-# mypimouse_corrider
+# mypimouse_corridor
 ROS practice

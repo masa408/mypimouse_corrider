@@ -1,4 +1,4 @@
 <launch>
-  <include= file="$(find mypimouse_ros)/launch/mypimouse.launch" />
-  <node pkg="mypimouse_corridor
+  <include file="$(find mypimouse_ros)/launch/mypimouse.launch" />
+  <node pkg="mypimouse_corridor" name="wall_stop" type="wall_stop.py" required="true" />
 </launch>
