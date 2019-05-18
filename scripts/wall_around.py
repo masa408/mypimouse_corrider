@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import rospy
+import rospy, math
 from geometry_msgs.msg import Twist
 from std_srvs.srv import Trigger, TriggerResponse
 from mypimouse_ros.msg import LightSensorValues
@@ -17,15 +17,15 @@ class WallAround():
 
 
     def wall_front(self, ls):
-        return ls.left_forward > 50 or ls.right_foward > 50
+        return ls.left_forward > 50 or ls.right_forward > 50
 
     
     def too_right(self, ls):
-        return ls.left_side > 50
+        return ls.right_side > 50
 
 
     def too_left(self, ls):
-        return ls.right_side > 50
+        return ls.left_side > 50
 
 
     def run(self):
@@ -40,10 +40,10 @@ class WallAround():
             elif self.too_right(self.sensor_values):
                 data.angular.z = math.pi
             elif self.too_left(self.sensor_values):
-                self.too_left = -math.pi
+                data.angular.z = -math.pi
             else:
                 e = 50 - self.sensor_values.left_side
-                data_angular.z = e * math.pi / 180
+                data.angular.z = e * math.pi / 180
                 
             self.cmd_vel.publish(data)
             rate.sleep()
